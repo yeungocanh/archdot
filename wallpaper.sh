@@ -1,7 +1,7 @@
 #!/bin/bash
 
 shopt -s nullglob
-cd /home/chaos/Pictures/Wallpapers
+cd ~/Pictures/Wallpapers
 
 while true; do
 	files=()
