@@ -1,0 +1,15 @@
+{
+  "ecmaVersion": 6,
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "loadEagerly": [
+    "project/static/js/projectforce.js",
+    "project/static/js/pfhq.js"
+  ],
+  "plugins": {
+    "modules": {},
+    "angular": {}
+  }
+}

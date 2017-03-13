@@ -1,0 +1,10 @@
+[Added Associations]
+application/wps-office.xlsx=wps-office-et.desktop;yozo-calc.desktop;
+text/plain=google-chrome.desktop;org.gnome.gedit.desktop;
+audio/mpeg=clementine.desktop;vlc.desktop;
+application/x-bittorrent=qBittorrent.desktop;
+text/csv=wps-office-et.desktop;
+image/jpeg=shotwell-viewer.desktop;mypaint.desktop;evince.desktop;
+application/x-trash=sublime_text_3_imfix.desktop;
+text/html=sublime_text_3_imfix.desktop;
+video/mp4=vlc.desktop;

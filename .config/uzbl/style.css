@@ -1,0 +1,133 @@
+@charset "UTF-8";
+* {
+    color: #000000 !important;              /*black*/
+    background-color: #FFDEAD !important;   /*NavajoWhite*/
+    border-color: #000000 !important;       /*black*/
+    line-height: 1.6 !important;
+}
+h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 * {
+    font-family: fantasy;
+}
+a, a * {
+    text-decoration: underline !important;
+    background: none !important;
+}
+a:link, a:link * {
+    color: #483D8B !important;              /*DarkSlateBlue*/
+}
+a:visited, a:visited * {
+    color: #9932CC !important;              /*DarkOrchid*/
+}
+a:hover, a:hover * {
+    text-decoration: underline overline !important;
+}
+ 
+ 
+    /*MediaWiki*/ /* will remove a lot of redundant links */ 
+#column-one { /*designed for old MediaWiki*/
+    float: left !important;
+}
+/* remove background images on edit, talk, etc */
+#head * {
+    background-image: none !important;
+}
+/* hide panel and footer */
+#panel, #footer {
+    display: none;
+}       
+/* hide n00b links */
+#mp-strapline {
+    display: none;
+}
+#content {
+    margin: 0 !important;
+}
+#p-search {
+    display: none;
+}
+a.new {
+    color: #B22222 !important;              /*firebrick*/
+}
+div.portlet {
+    display: none !important;
+}
+ 
+    /*bbs.archlinux.org*/
+/* remove kludgy borders and make more width for content */
+div.postright, div.postfootright {
+    border: none !important;
+    float: left;
+    clear: both;
+}
+div.postleft {
+    width: 100% !important;
+}
+div.postleft dd {
+    float: left;
+}
+div.postleft dd:after {
+    content: "\00a0 \00a0 ";
+}
+ 
+    /*google*/
+/*get rid of sponsored links*/
+table#mbEnd {
+    display: none !important;
+}
+ 
+    /*slashdot*/
+#slashboxes, #hd, #menu.tag-menu, .yui-gf, #fh-pag-div, #d2act, #commentControlBox {
+    display: none !important;
+}
+#yui-main {
+    margin: 0 !important;
+}
+#firehose {
+    position: absolute !important;
+    left: 0 !important;
+    width: 80% !important;
+    margin: 0 !important;
+}
+#commentlisting {
+    position: absolute !important;
+    left: 0 !important;
+    top: 100ex !important;
+    width: 80% !important;
+}
+{
+    display
+}
+.article {
+    border: none !important;
+}
+.article h3, .article-foot, .a2 {
+    background: url('') !important;
+}
+i {
+    border: none !important;
+}
+.uzbl_highlight { background-color: #eee8aa;} /*PaleGoldenRod*/
+.uzbl_h_first   { background-color: #90ee90;} /*LightGreen*/
+ 
+.uzbl_follow    { border-style:     dotted;
+                  border-width:     thin;
+}
+ 
+#uzbl_hint > div    {
+	display:                        inline;
+	border:                         2px solid #000000;
+	background-color:               #000000;
+	color:                          #bc8f8f; /*RosyBrown*/
+	font-size:                      10px;
+	font-weight:                    bold;
+	line-height:                    10px;
+	margin:                         0px;
+	padding:                        0px;
+	position:                       absolute;
+	z-index:                        1000;
+	-webkit-border-radius:          6px;
+	text-decoration:                none;
+	-wekit-transform:               scale(1) rotate(15deg) translate(-6px,-5px);
+}
+ 
+/* vim:set et ts=4: */

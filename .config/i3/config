@@ -1,0 +1,274 @@
+
+#fix switch to dev mode (might need a bash script for this)
+#fix up bar
+#
+# See http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+set $mod1 Mod1
+set $mod3 Control
+
+#AUTOSTART STUFF
+#exec xset r rate 175 25
+exec xset r rate 500 30
+exec --no-startup-id /usr/bin/compton --config ~/.compton.conf
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
+exec --no-startup-id /usr/lib/fingerprint-gui/fingerprint-polkit-agent -d
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id feh --bg-scale ~/dark-universe-1.jpg
+font pango:Droid Sans Mono Awesome 12
+
+#Colors
+set $back               #1d1F21
+set $black              #282A2E
+set $grey               #303030
+set $lightgrey          #707880
+set $white              #C5C8C6
+set $yellow             #F0C674
+set $red                #CC6666
+set $darkred            #A54242
+set $green              #AFD700
+set $blue               #0087AF
+set $archblue           #33B5E5
+set $orange             #FFAF00
+set $background         #000000
+set $transparent        #00000077
+
+#class                  border      backgr.     text        split
+client.focused          $lightgrey  $lightgrey      $black      $lightgrey
+client.focused_inactive $white      $grey       $lightgrey  $grey
+client.unfocused        $white      $grey       $lightgrey  $grey
+client.urgent           $orange    $orange     $black      $grey
+client.background       $back
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+popup_during_fullscreen smart
+bindsym $mod+Return exec termite
+# mouse_warping none
+
+#i3-gaps stuff :)
+for_window [class="^.*"] border pixel 0
+for_window [class="inactive"] border pixel 0
+#figure out how to do this ^
+gaps inner 10
+gaps outer 0
+smart_borders on
+#edit gaps mode
+#########################################################################
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+##########################################################################
+
+#custom app commands (?i) just means case insenitive..
+for_window [class="(?i)qemu-system-x86_64"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable, border normal, move position mouse
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Fix graphics glitch
+new_window none
+
+# start rofi (program launcher)
+bindsym $mod+d exec --no-startup-id rofi -font "Roboto Mono for Powerline 10" -show run
+# start rofi (window switcher)
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window -font "Roboto Mono for Powerline 12"
+bindsym $mod+t exec --no-startup-id nautilus
+#use "xmodmap -pke" to get list of special keys
+#custom special key fixes
+bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym Print exec teiler
+bindsym $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/'
+bindsym $mod+F11 exec light -U 5
+bindsym $mod+F12 exec light -A 5
+bindsym F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+# vim keys
+set $key_left h
+set $key_down j
+set $key_up k
+set $key_right l
+
+# change focus
+bindsym $mod+$key_left focus left
+bindsym $mod+$key_down focus down
+bindsym $mod+$key_up focus up
+bindsym $mod+$key_right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$key_left move left
+bindsym $mod+Shift+$key_down move down
+bindsym $mod+Shift+$key_up move up
+bindsym $mod+Shift+$key_right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in burger (horizontal) orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+p focus parent
+
+# workspaces
+set $ws1 1:
+set $ws2 2:
+set $ws3 3:
+set $ws4 4:
+set $ws5 5:
+set $ws6 6:
+set $ws7 7:
+set $ws8 8:
+set $ws9 9:
+
+# switch to workspaces
+bindsym $mod1+1 workspace $ws1
+bindsym $mod1+2 workspace $ws2
+bindsym $mod1+3 workspace $ws3
+bindsym $mod1+4 workspace $ws4
+bindsym $mod1+5 workspace $ws5
+bindsym $mod1+6 workspace $ws6
+bindsym $mod1+7 workspace $ws7
+bindsym $mod1+8 workspace $ws8
+bindsym $mod1+9 workspace $ws9
+bindsym $mod1+Tab workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod1+Shift+1 move container to workspace $ws1
+bindsym $mod1+Shift+2 move container to workspace $ws2
+bindsym $mod1+Shift+3 move container to workspace $ws3
+bindsym $mod1+Shift+4 move container to workspace $ws4
+bindsym $mod1+Shift+5 move container to workspace $ws5
+bindsym $mod1+Shift+6 move container to workspace $ws6
+bindsym $mod1+Shift+7 move container to workspace $ws7
+bindsym $mod1+Shift+8 move container to workspace $ws8
+bindsym $mod1+Shift+9 move container to workspace $ws9
+
+# assignments (need 2 fix)
+assign [class="^firefox$" instance="^firefox$"] $ws3
+assign [title="Spotify" instance="^spotify$"] $ws4
+assign [title="^thunderbird$" instance="^thunderbird$"] $ws5
+assign [class="^mpv$" instance="^gl$"] $ws6
+
+# adjust displays
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym $key_left resize shrink width 2 px or 2 ppt
+    bindsym $key_up resize grow height 2 px or 2 ppt
+    bindsym $key_down resize shrink height 2 px or 2 ppt
+    bindsym $key_right resize grow width 2 px or 2 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 2 px or 2 ppt
+    bindsym Down resize grow height 2 px or 2 ppt
+    bindsym Up resize shrink height 2 px or 2 ppt
+    bindsym Right resize grow width 2 px or 2 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym $mod+Shift+w exec pkill compton, gaps inner 10, gaps outer 5
+
+bar {
+    verbose yes
+    status_command i3blocks -c ~/.config/i3blocks/i3block.conf
+    strip_workspace_numbers no
+    mode dock
+    position top
+    height 25
+    font pango: Droid Sans Mono Awesome 12
+    colors {
+        separator $red
+        background         #282828
+        statusline         $orange
+        focused_workspace  $transparent #5294E2 #2F343F
+        active_workspace   $282828 $282828 $darkred
+        inactive_workspace $282828 $282828 $orange
+        urgent_workspace   #cc241d #cc241d $transparent
+        binding_mode       $transparent $transparent $blue
+    }
+}
+

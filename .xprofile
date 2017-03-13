@@ -1,0 +1,5 @@
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export STEAM_RUNTIME=0
+export QT_STYLE_OVERRIDE=gtk2
