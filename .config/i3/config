@@ -13,34 +13,36 @@ set $mod3 Control
 exec xset r rate 500 30
 exec --no-startup-id /usr/bin/compton --config ~/.compton.conf
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id /usr/bin/parcellite
+exec --no-startup-id /usr/bin/fcitx
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
 exec --no-startup-id /usr/lib/fingerprint-gui/fingerprint-polkit-agent -d
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id feh --bg-scale ~/dark-universe-1.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers.jpg
 font pango:Droid Sans Mono Awesome 12
 
 #Colors
-set $back               #1d1F21
-set $black              #282A2E
-set $grey               #303030
-set $lightgrey          #707880
-set $white              #C5C8C6
-set $yellow             #F0C674
-set $red                #CC6666
-set $darkred            #A54242
-set $green              #AFD700
-set $blue               #0087AF
-set $archblue           #33B5E5
-set $orange             #FFAF00
-set $background         #000000
-set $transparent        #00000077
+set $back               #1b1918
+set $black              #f22c40
+set $grey               #7b9726
+set $lightgrey          #7b9726
+set $white              #407ee7
+set $yellow             #fabd2f
+set $red                #407ee7
+set $darkred            #a8a19f
+set $green              #766e6b
+set $blue               #766e6b
+set $archblue           #7b9726
+set $orange             #7b9726
+set $background         #f1efee
+set $transparent        #f1efee77
 
-#class                  border      backgr.     text        split
-client.focused          $lightgrey  $lightgrey      $black      $lightgrey
-client.focused_inactive $white      $grey       $lightgrey  $grey
+#class                  border      backgr     text        split
+client.focused          $orange  $lightgrey      $black      $lightgrey
+client.focused_inactive $orange      $grey       $lightgrey  $grey
 client.unfocused        $white      $grey       $lightgrey  $grey
 client.urgent           $orange    $orange     $black      $grey
-client.background       $back
+client.background       $black
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -49,12 +51,12 @@ bindsym $mod+Return exec termite
 # mouse_warping none
 
 #i3-gaps stuff :)
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
 for_window [class="inactive"] border pixel 0
 #figure out how to do this ^
 gaps inner 10
 gaps outer 0
-smart_borders on
+
 #edit gaps mode
 #########################################################################
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -116,9 +118,9 @@ bindsym $mod+Shift+q kill
 new_window none
 
 # start rofi (program launcher)
-bindsym $mod+d exec --no-startup-id rofi -font "Roboto Mono for Powerline 10" -show run
+bindsym $mod+d exec --no-startup-id rofi -font "Iosevka Term 12" -show run
 # start rofi (window switcher)
-bindsym $mod+Shift+d exec --no-startup-id rofi -show window -font "Roboto Mono for Powerline 12"
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window -font "Iosevka Term 12"
 bindsym $mod+t exec --no-startup-id nautilus
 #use "xmodmap -pke" to get list of special keys
 #custom special key fixes
@@ -127,8 +129,6 @@ bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
 bindsym XF86AudioMute exec pulseaudio-ctl mute
 bindsym Print exec teiler
 bindsym $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/'
-bindsym $mod+F11 exec light -U 5
-bindsym $mod+F12 exec light -A 5
 bindsym F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 # vim keys
 set $key_left h
@@ -184,7 +184,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+p focus parent
 
 # workspaces
-set $ws1 1:
+set $ws1 1:
 set $ws2 2:
 set $ws3 3:
 set $ws4 4:
@@ -223,14 +223,8 @@ assign [title="Spotify" instance="^spotify$"] $ws4
 assign [title="^thunderbird$" instance="^thunderbird$"] $ws5
 assign [class="^mpv$" instance="^gl$"] $ws6
 
-# adjust displays
-# reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
     bindsym $key_left resize shrink width 2 px or 2 ppt
@@ -255,18 +249,18 @@ bindsym $mod+Shift+w exec pkill compton, gaps inner 10, gaps outer 5
 bar {
     verbose yes
     status_command i3blocks -c ~/.config/i3blocks/i3block.conf
-    strip_workspace_numbers no
+    strip_workspace_numbers yes
     mode dock
     position top
     height 25
-    font pango: Droid Sans Mono Awesome 12
+    font pango: Iosevka Term 12
     colors {
         separator $red
-        background         #282828
+        background         $background
         statusline         $orange
         focused_workspace  $transparent #5294E2 #2F343F
-        active_workspace   $282828 $282828 $darkred
-        inactive_workspace $282828 $282828 $orange
+        active_workspace   $red $blue $darkred
+        inactive_workspace $background $background $orange
         urgent_workspace   #cc241d #cc241d $transparent
         binding_mode       $transparent $transparent $blue
     }
