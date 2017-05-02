@@ -14,7 +14,7 @@ exec xset r rate 500 30
 exec --no-startup-id /usr/bin/compton --config ~/.compton.conf
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/fcitx
-exec --no-startup-id feh --bg-scale ~/Pictures/dark-universe-1.jpg
+exec --no-startup-id /usr/bin/feh --bg-scale ~/4QkskRb-arch-linux-wallpaper.jpg
 font pango:Droid Sans Mono Awesome 12
 
 #Colors
@@ -179,7 +179,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+p focus parent
 
 # workspaces
-set $ws1 1:
+set $ws1 1:
 set $ws2 2:
 set $ws3 3:
 set $ws4 4:
@@ -247,14 +247,14 @@ bar {
     mode dock
     position top
     height 25
-    font pango: Iosevka Term 12
+    font pango: Droid Sans Mono Awesome 11
     colors {
          separator $red
          background         #282828
-         statusline         $yellow
+         statusline         $white
          focused_workspace  $transparent #5294E2 #2F343F
          active_workspace   $282828 $282828 $blue
-         inactive_workspace $282828 $282828 $fabd2f
+         inactive_workspace $282828 $282828 #ebdbb2
          urgent_workspace   #cc241d #cc241d $red
          binding_mode       $archblue $yellow $blue
      }
