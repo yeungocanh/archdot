@@ -5,13 +5,12 @@ call plug#begin()
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'ervandew/supertab'
-Plug 'burnettk/vim-angular'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs'
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,7 +19,11 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'pangloss/vim-javascript'
-
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+Plug 'nvie/vim-flake8'
+Plug 'jiangmiao/auto-pairs'
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 
@@ -39,21 +42,30 @@ set expandtab
 set autoindent
 set number showmatch
 set mouse=a
+
+
+let g:rainbow_active = 1
+
 let python_highlight_all = 1
 let g:deoplete#enable_at_startup = 1
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#force_py_version=2
-
+let g:flake8_cmd="/usr/bin/flake8"
 let g:gitgutter_max_signs=10000
-let python_highlight_all = 1
 let g:jedi#show_call_signatures = "0"
 
 """colorscheme
 colorscheme gruvbox
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
-autocmd FileType python setlocal completeopt-=preview
 let g:used_javascript_libs = 'angularjs,jquery'
+let g:typescript_compiler_binary = 'tsc'
+
+autocmd FileType python setlocal completeopt-=preview
+autocmd BufWritePost *.py call Flake8()
+autocmd FileType typescript setlocal completeopt-=menu
+
+let g:tsuquyomi_completion_detail = 1
 
 set background=dark
 let g:enable_bold_font = 1
@@ -68,6 +80,5 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_improved_strings=1
 
-let g:tern#command = ["/usr/bin/tern"]
-let g:used_javascript_libs = 'jquery,angularjs'
-
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
