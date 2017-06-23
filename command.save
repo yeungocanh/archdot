@@ -1,0 +1,6 @@
++ Restore
+mysql -hmysqldb -p2Lj2UkqXymn6 weorder < dump.sql
+
++ dump database
+mysqldump -hmysqldb -p2Lj2UkqXymn6 weorder > dump.sql
+3496990df8f48d2c05ab5840b12746b50af7f1142def29ac85c3fc7820fa78fa
