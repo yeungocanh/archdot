@@ -1,8 +1,10 @@
-source ~/antigen.zsh
+source /home/mzark/antigen.zsh
+
 export TERM='xterm-256color'
 export MAKEFLAGS="-j4"
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export PATH=/home/chaos/.cargo/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
+
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs virtualenv)
 POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -10,15 +12,15 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # Customize to your needs..
 antigen use oh-my-zsh
 antigen bundle systemd
-antigen bundle archlinux
+#antigen bundle archlinux
 antigen bundle git
 antigen bundle django
 antigen bundle history-substring-search
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle trapd00r/zsh-syntax-highlighting-filetypes
-antigen theme bhilburn/powerlevel9k powerlevel9k
+#antigen bundle trapd00r/zsh-syntax-highlighting-filetypes
+#antigen theme bhilburn/powerlevel9k powerlevel9k
 #antigen bundle tylerreckart/hyperzsh
-#antigen theme hyperzsh
+antigen theme dpoggi
 antigen apply
 
 export EDITOR='nvim'
@@ -45,8 +47,17 @@ function delete_pyc {
 }
 
 alias grep=egrep
+
 function f {
     find . -name $1
+}
+
+function zinstall {
+    sudo zypper install $1
+}
+
+function zsearch {
+    sudo zypper search $1
 }
 
 function  zrg {
@@ -54,28 +65,9 @@ function  zrg {
 }
 ulimit -n 2048
 alias largfile='du -hsx * | sort -rh | head -10'
-alias ls='/usr/bin/vendor_perl/ls++ --potsf'
-alias l='/usr/bin/vendor_perl/ls++ -a --potsf'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-LS_COLORS=$(ls_colors_generator)
-
-run_ls() {
-	ls-i --color=auto -w $(tput cols) "$@"
-}
-
-run_dir() {
-	dir-i --color=auto -w $(tput cols) "$@"
-}
-
-run_vdir() {
-	vdir-i --color=auto -w $(tput cols) "$@"
-}
-
 kopy() {
     a=$(cat); curl -X POST -s -d "raw:$a" http://kopy.io/documents | awk -F '"' '{print "http://kopy.io/"$4}';
 }
 
-alias ls="run_ls"
-alias dir="run_dir"
-alias vdir="run_vdir"
+
