@@ -1,0 +1,19 @@
+Host staging
+    HostName staging.projectfocushq.com
+    User ec2-user
+    IdentityFile ~/ProForPtyLtd.pem
+Host prelive
+    HostName prelive.projectfocushq.com
+    User ec2-user
+    IdentityFile ~/ProForPtyLtd.pem
+Host live
+    HostName app.projectfocushq.com
+    User ec2-user
+    IdentityFile ~/ProForPtyLtd.pem
+Host jenkins
+    HostName 35.163.144.146
+    User centos
+    IdentityFile ~/ProForPtyLtd.pem
+Host order
+    HostName 45.32.104.181
+    User root
