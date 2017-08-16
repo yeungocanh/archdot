@@ -3,6 +3,7 @@ function! DoRemote(arg)
 endfunction
 call plug#begin()
 
+
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
@@ -10,7 +11,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -23,7 +24,10 @@ Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'nvie/vim-flake8'
 Plug 'jiangmiao/auto-pairs'
-Plug 'luochen1990/rainbow'
+Plug 'ryanoasis/vim-devicons'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'ntpeters/vim-better-whitespace'
+
 
 call plug#end()
 
@@ -36,13 +40,14 @@ set colorcolumn=120
 set laststatus=2
 set updatetime=250
 set encoding=utf-8
-set shiftwidth=4 
-set tabstop=4 
-set expandtab 
+set shiftwidth=4
+set tabstop=4
+set expandtab
 set autoindent
 set number showmatch
 set mouse=a
-
+set cursorline
+set relativenumber
 
 let g:rainbow_active = 1
 
@@ -79,6 +84,6 @@ map <C-p> :FZF<CR>
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_improved_strings=1
-
+let g:airline#extensions#tabline#enabled = 1
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']

@@ -1,5 +1,5 @@
 + Restore
-mysql -hmysqldb -p2Lj2UkqXymn6 weorder < dump.sql
+mysql -hmysqldb -p2Lj2UkqXymn6 orderus < dump.sql
 
 + dump database
 mysqldump -hmysqldb -p2Lj2UkqXymn6 weorder > dump.sql
